@@ -1,0 +1,151 @@
+{
+    "grain": "1d",
+    "epoch": "2018-01-05",
+    "last_processed": "2020-04-15 00:00:00",
+    "jobs": [
+        {
+            "name": "daily-time-entry-except-customer-service",
+            "active": true,
+            "when": "1d",
+            "query_source": "select employee_id from dbo.v_active_employees where payroll_type = 'Hourly' and employee_department != 'Customer Service'",
+            "apply_to_rows": "100%",
+            "with_probability": 0.5,
+            "action": "execute p_add_time_entry @employee_id={employee_id}, @entry_date='{entry_date}', @hours_worked={hours_worked}",
+            "params": {
+                "hours_worked": "int(random.gauss(0,1.3)+5)",
+                "entry_date": "self.to_datetime_string(current_date)",
+                "employee_id": "rows[i][0]"
+            }
+        },
+        {
+            "name": "daily-time-entry-customer-service",
+            "active": true,
+            "when": "1d",
+            "query_source": "select employee_id from dbo.v_active_employees where payroll_type = 'Hourly' and employee_department = 'Customer Service'",
+            "apply_to_rows": "100%",
+            "with_probability": 0.75,
+            "action": "execute p_add_time_entry @employee_id={employee_id}, @entry_date='{entry_date}', @hours_worked={hours_worked}",
+            "params": {
+                "hours_worked": "int(self.random.gauss(0,0.5)+6)",
+                "entry_date": "self.to_datetime_string(current_date)",
+                "employee_id": "rows[i][0]"
+            }
+        },
+        {
+            "name": "friday-weekly-payroll",
+            "active": true,
+            "when": "fri",
+            "query_source": "select employee_id from dbo.v_active_employees",
+            "apply_to_rows": "100%",
+            "with_probability": 1.0,
+            "action": "execute p_issue_paycheck @employee_id={employee_id}, @payperiod_id='{payperiod_id}'",
+            "params": {
+                "payperiod_id": "self.to_date_id(current_date)",
+                "employee_id": "rows[i][0]"
+            }
+        },
+        {
+            "name": "annual-raise",
+            "active": true,
+            "when": "annual=01-12",
+            "query_source": "select employee_id from dbo.v_active_employees",
+            "apply_to_rows": "100%",
+            "with_probability": 1.0,
+            "pre_action": "exec p_disable_employee_temporal_table",
+            "post_action": "exec p_enable_employee_temporal_table",
+            "action": "execute p_employee_give_raise @event_date='{event_date}', @employee_id={employee_id}, @percent_increase={percent_increase}",
+            "params": {
+                "event_date": "self.to_datetime_string(current_date)",
+                "percent_increase": "self.datagen.payroll_employee_raise_pct(current_date.year-2018)",
+                "employee_id": "rows[i][0]"
+            }
+        },
+        {
+            "name": "terminate-employee",
+            "active": true,
+            "when": "1d",
+            "query_source": "select employee_id from dbo.v_active_employees where employee_jobtitle='Sales Associate'",
+            "apply_to_rows": "1",
+            "with_probability": 0.003,
+            "pre_action": "exec p_disable_employee_temporal_table",
+            "post_action": "exec p_enable_employee_temporal_table",
+            "action": "execute p_employee_terminate @event_date='{event_date}', @employee_id={employee_id}, @termination_date='{termination_date}'",
+            "params": {
+                "event_date": "self.to_datetime_string(current_date)",
+                "termination_date": "self.to_datetime_string(current_date)",
+                "employee_id": "rows[i][0]"
+            }
+        },
+        {
+            "name": "seasonal-transfer-to-toys",
+            "active": true,
+            "when": "nov",
+            "query_source": "select employee_id from dbo.v_active_employees where employee_jobtitle='Sales Associate' and  employee_department='Customer Service'",
+            "apply_to_rows": "1",
+            "with_probability": 0.05,
+            "pre_action": "exec p_disable_employee_temporal_table",
+            "post_action": "exec p_enable_employee_temporal_table",
+            "action": "execute p_seasonal_transfer @event_date='{event_date}', @employee_id={employee_id}, @from_department='{from_department}',  @to_department='{to_department}'",
+            "params": {
+                "event_date": "self.to_datetime_string(current_date)",
+                "from_department": "'Customer Service'",
+                "to_department": "'Toys'",
+                "employee_id": "rows[i][0]"
+            }
+        },
+        {
+            "name": "seasonal-transfer-to-electronics",
+            "active": true,
+            "when": "nov",
+            "query_source": "select employee_id from dbo.v_active_employees where employee_jobtitle='Sales Associate' and  employee_department='Customer Service'",
+            "apply_to_rows": "1",
+            "with_probability": 0.05,
+            "pre_action": "exec p_disable_employee_temporal_table",
+            "post_action": "exec p_enable_employee_temporal_table",
+            "action": "execute p_seasonal_transfer @event_date='{event_date}', @employee_id={employee_id}, @from_department='{from_department}',  @to_department='{to_department}'",
+            "params": {
+                "event_date": "self.to_datetime_string(current_date)",
+                "from_department": "'Customer Service'",
+                "to_department": "'Electronics'",
+                "employee_id": "rows[i][0]"
+            }
+        },
+        {
+            "name": "seasonal-transfer-return",
+            "active": true,
+            "when": "annual=01-04",
+            "query_source": "select employee_id from temp_seasonal_transfers",
+            "apply_to_rows": "100%",
+            "with_probability": 1.0,
+            "pre_action": "exec p_disable_employee_temporal_table",
+            "post_action": "exec p_enable_employee_temporal_table",
+            "action": "execute p_return_seasonal_transfer @event_date='{event_date}', @employee_id={employee_id}",
+            "params": {
+                "event_date": "self.to_datetime_string(current_date)",
+                "employee_id": "rows[i][0]"
+            }
+        },
+        {
+            "name": "hire-employee",
+            "active": true,
+            "when": "1d",
+            "query_source": "select min(employee_pay_rate) as min_pay_rate from employees",
+            "apply_to_rows": "1",
+            "with_probability": 0.015,
+            "run_code": "self.datagen.payroll_get_new_employee([r[0] for r in self.execute_query('select employee_ssn from employees') ])",
+            "pre_action": "exec p_disable_employee_temporal_table",
+            "post_action": "exec p_enable_employee_temporal_table",
+            "action": "execute p_hire_employee @event_date='{event_date}', @employee_ssn='{employee_ssn}', @employee_firstname='{employee_firstname}',@employee_lastname='{employee_lastname}', @employee_hire_date='{employee_hire_date}', @employee_jobtitle='{employee_jobtitle}', @employee_department='{employee_department}', @employee_pay_rate={employee_pay_rate} ",
+            "params": {
+                "event_date": "self.to_datetime_string(current_date)",
+                "employee_ssn": "run_code['ssn']",
+                "employee_firstname": "run_code['first_name']",
+                "employee_lastname": "run_code['last_name']",
+                "employee_hire_date": "self.to_datetime_string(current_date)",
+                "employee_jobtitle": "'Sales Associate'",
+                "employee_department": "run_code['department']",
+                "employee_pay_rate": "rows[i][0]"
+            }
+        }
+    ]
+}

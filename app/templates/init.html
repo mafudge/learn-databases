@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}
+Init Output 
+{% endblock %}
+{% block content %}
+<div class="min-w-full">
+<code>
+    {% for row in rows %}
+        {{ row }}<br>
+    {% endfor %}
+</code>
+</div>
+<div class="min-w-full">
+    <a href="/" class="bg-green-500 hover:bg-green-700 font-bold text-white p-1 rounded">Return</a>
+</div>
+{% endblock %}

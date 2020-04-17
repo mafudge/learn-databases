@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% block title %}
+Database Provisioner
+{% endblock %}
+{% block content %}
+                        <!--Table Card-->
+                        <div class="min-w-full">
+                        <div class="p-6">
+                            <div class="p-3">
+                                <h5 class="font-bold text-black">Databases</h5>
+                            </div>
+                            <div class="p-5">
+                                <table class="w-full p-5 text-gray-700">
+                                    <thead>
+                                        <tr class="font-bold">
+                                            <th class="text-left text-blue-700">Actions</th>
+                                            <th class="text-left text-blue-700">Name</th>
+                                            <th class="text-left text-blue-700">Info</th>
+                                            <th class="text-left text-blue-700">Updatable</th>
+                                            <th class="text-left text-blue-700">Created On</th>
+                                            <th class="text-left text-blue-700">Data Last Updated On</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {% for db in databases %}
+                                        <tr class="hover:bg-orange-200">
+                                            <td class="p-3">
+                                                <a href="/init/{{db.name}}" class="bg-blue-500 hover:bg-blue-700 font-bold text-white p-1 rounded" 
+                                                onclick="return confirm('This create the database schema and load any initial data. Are you sure?')">
+                                                    {{ "Create" if db.provisioned == 'None' else "Recreate" }}
+                                                </a>
+                                                {% if db.provisioned != 'None'  %}
+                                                <a href="/drop/{{db.name}}" class="bg-red-500 hover:bg-red-700 font-bold text-white p-1 rounded" 
+                                                onclick="return confirm('This will drop the database and its data. Are you sure?')">
+                                                    Drop
+                                                </a>
+                                                {% endif %}
+                                                {% if not db.static and db.provisioned != 'None' %}
+                                                <a href="/update/{{db.name}}" class="bg-green-500 hover:bg-green-700 font-bold text-white p-1 rounded" 
+                                                onclick="return confirm('This will generate and execute data scripts to bring the data current. Are you sure?')">
+                                                    Update
+                                                </a>
+                                                <a href="/remove/{{db.name}}" class="bg-purple-500 hover:bg-purple-700 font-bold text-white p-1 rounded" 
+                                                onclick="return confirm('This removes all generated data scripts. Are you sure?')">
+                                                    Remove
+                                                </a>
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ db.name }}</td>
+                                            <td><a href="/readme/{{db.name}}" target="_readme_">
+                                                <i class="fab fa-readme"></i>
+                                            </a></td>
+                                            <td>{{ "No" if db.static else "Yes" }}</td>
+                                            <td>{{ db.provisioned}}</td>
+                                            <td>{{ "N/A" if db.static else db.last_update }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--/table Card-->
+                    </div>
+{% endblock %}
+
+{% block connection %}
+<p class="text-l">Connection Information for SQL Server<br>
+    <span style="font-family: monospace;">
+    <i class="fas fa-server"></i> {{conn['host']}}  <i class="fas fa-project-diagram"></i> {{conn['port']}} <i class="fas fa-user"></i> {{conn['user']}} <i class="fas fa-lock"></i> {{conn['pass']}}
+    </span>
+</p>
+{% endblock %}

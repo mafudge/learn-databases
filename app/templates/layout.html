@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="description" content="description here">
+        <meta name="keywords" content="keywords,here">
+
+        <link href="https://fonts.googleapis.com/css?family=Nunito:400,700,800" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+        <!--Replace with your tailwind.css once created-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"><!DOCTYPE html>
+    </head>
+    <body class="flex h-screen bg-gray-100 font-sans p-6">
+        <div id="dash-content" class="bg-gray-100 py-6 lg:py-0 w-full lg:max-w-sm flex flex-wrap content-start min-w-full">
+            <div class="min-w-full flex justify-between items-stretch">
+                <div class="flex-col self-end">
+                    <h1 class="text-4xl"><i class="fas fa-database"></i> Database Provisioner</h1>
+                </div>
+                <div class="flex-col self-end">
+                    {% block connection %}
+                    {% endblock %}
+                </div>
+            </div>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
