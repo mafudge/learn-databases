@@ -30,6 +30,18 @@ services:
     volumes:
       - "./app/:/app/" # for now
       - "./schemas:/app/schemas"
+  sqlpad:
+    image: sqlpad/sqlpad
+    environment:
+      - "SQLPAD_ADMIN=admin@admin.org"
+      - "SQLPAD_ADMIN_PASSWORD=SU2orange!"
+      - "SQLPAD_DEBUG=True"
+      - "DISABLE_AUTH=True"
+    ports:
+      - "5001:3000"
+    volumes:
+      - sqlpad-volume:/var/lib/sqlpad
+
 #  superset:
 #    build: superset/.
 #    links:
@@ -45,3 +57,4 @@ services:
 #      - "25482:25482"
 volumes:
     mssql-2017-data:
+    sqlpad-volume:

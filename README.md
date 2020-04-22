@@ -28,7 +28,7 @@ This is the client tool used to connect to the databases.
 
 1. Open a terminal window inside the `learn-dataases` folder.
 2. Type : `docker-compose up -d` to start everything.
-3. Type : `docker-compose ps` to see the `mssql` Database and `webapp` ruinning.
+3. Type : `docker-compose ps` to see the `mssql` Database,  `webapp`, and `sqlpad` running.
 
 ### Creating the Sample Databases
 
@@ -44,4 +44,7 @@ There is a built-in web application for creating the sample databases. For some 
 3. Fill in the connection information based on the information displayed in the Database Provisioner application.
 4. Here's a quick tutorial you can follow to learn Azure Data Studio. [https://docs.microsoft.com/en-us/sql/azure-data-studio/quickstart-sql-server](https://docs.microsoft.com/en-us/sql/azure-data-studio/quickstart-sql-server)
 
+#### Browser-based connection to MSSQL Server
+
+1. Open a web browser and connect to `http://localhost:5001` to launch the SQL Pad application.
 
