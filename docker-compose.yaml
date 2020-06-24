@@ -8,8 +8,11 @@ services:
       - "SA_PASSWORD=SU2orange!"
     ports:
       - "1433:1433"
+    hostname: mssql
     volumes:
       - "mssql-2017-data:/var/opt/mssql"
+    networks: 
+      - "learndb_net"
   webapp:    
     build: app/.
     environment:
@@ -30,17 +33,22 @@ services:
     volumes:
       - "./app/:/app/" # for now
       - "./schemas:/app/schemas"
+    networks: 
+      - "learndb_net"
   sqlpad:
-    image: sqlpad/sqlpad
+    image: sqlpad/sqlpad:4.4
     environment:
       - "SQLPAD_ADMIN=admin@admin.org"
       - "SQLPAD_ADMIN_PASSWORD=SU2orange!"
-      - "SQLPAD_DEBUG=True"
       - "DISABLE_AUTH=True"
+    links:
+      - mssql
     ports:
       - "5001:3000"
     volumes:
       - sqlpad-volume:/var/lib/sqlpad
+    networks: 
+      - "learndb_net"
 
 #  superset:
 #    build: superset/.
@@ -58,3 +66,7 @@ services:
 volumes:
     mssql-2017-data:
     sqlpad-volume:
+
+networks:
+  learndb_net:
+    driver: bridge
