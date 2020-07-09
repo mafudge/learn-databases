@@ -49,6 +49,14 @@ services:
       - sqlpad-volume:/var/lib/sqlpad
     networks: 
       - "learndb_net"
+  adminer:
+    build: adminer/.
+    ports:
+      - "5002:8080"
+    links:
+      - mssql
+    networks:
+      - "learndb_net"
 
 #  superset:
 #    build: superset/.
