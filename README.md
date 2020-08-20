@@ -54,8 +54,10 @@ If you do not have `git` installed or you do not wish to clone the repository:
 
 # Walkthrough 
 
-Here's a video of the walkthrough:
-[![Watch the video of the walkthroguh](https://img.youtube.com/vi/CxCUrQ6knRo/maxresdefault.jpg)](https://youtu.be/CxCUrQ6knRo)  
+Here's a video of the walkthrough:   
+
+[![Watch the video of the walkthrough](https://img.youtube.com/vi/CxCUrQ6knRo/hqdefault.jpg)](https://youtu.be/CxCUrQ6knRo) 
+
 [https://youtu.be/CxCUrQ6knRo](https://youtu.be/CxCUrQ6knRo)
 
 ## Running the containers
