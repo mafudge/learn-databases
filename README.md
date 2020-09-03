@@ -37,8 +37,6 @@ Use this software to accompany the Applied Database Management textbook, the Int
 2. Azure Data Studio. This is the client tool used to connect to the Microsoft SQL Server and compliments the web equivalents of SQL Pad and Adminer.  
 [https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio)
 
-# Walkthrough 
-
 ## Installing Learn Databases
 
 To install Learn Databases, clone or download this repository to your computer. 
@@ -53,6 +51,14 @@ If you do not have `git` installed or you do not wish to clone the repository:
 
 1.  Click [https://github.com/mafudge/learn-databases/archive/master.zip](https://github.com/mafudge/learn-databases/archive/master.zip) to download this repository. 
 2. After it downloads, unzip the file to a folder where you wish to store the code repository.
+
+# Walkthrough 
+
+Here's a video of the walkthrough:   
+
+[![Watch the video of the walkthrough](https://img.youtube.com/vi/CxCUrQ6knRo/hqdefault.jpg)](https://youtu.be/CxCUrQ6knRo) 
+
+[https://youtu.be/CxCUrQ6knRo](https://youtu.be/CxCUrQ6knRo)
 
 ## Running the containers
 
@@ -114,4 +120,5 @@ To start an individual service, you can use the `start` option:
 
 Or to start all containers, you can use:  
 `docker-compose up -d`
+
 
