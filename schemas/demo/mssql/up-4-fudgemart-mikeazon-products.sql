@@ -1,0 +1,136 @@
+use demo
+GO
+
+drop table if exists fudgemart_products
+drop table if exists mikeazon_products
+go
+
+CREATE TABLE fudgemart_products (
+	[product_id] [int]  NOT NULL,
+	[product_department] [varchar](20) NOT NULL,
+	[product_name] [varchar](50) NOT NULL,
+	[product_retail_price] [money] NOT NULL,
+	[product_wholesale_price] [money] NOT NULL,
+ CONSTRAINT [PK_fudgemart_products_product_id] PRIMARY KEY ([product_id] )
+)
+GO
+create table mikeazon_products (
+    [product_id] [int] NOT NULL,
+	[product_department] [varchar](20) NOT NULL,
+	[product_name] [varchar](50) NOT NULL,
+	[product_retail_price] [money] NOT NULL,
+    CONSTRAINT [PK_ma_products_product_id] PRIMARY KEY ([product_id] )
+)
+GO
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (1, N'Hardware', N'Straight Claw Hammer', 15.9500, 11.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (2, N'Hardware', N'Sledge Hammer', 21.9500, 15.0000 )
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (3, N'Hardware', N'Rip Claw Hammer', 19.9500, 12.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (4, N'Clothing', N'Dri-Fit Tee', 20.0000, 8.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (5, N'Clothing', N'Running Pants', 35.0000, 12.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (6, N'Clothing', N'Wool Socks', 8.0000, 2.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (7, N'Clothing', N'Squeaky Sneaks', 65.0000, 20.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (8, N'Clothing', N'Cool Jeans', 45.0000, 10.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (9, N'Clothing', N'Denim Jacket', 60.0000, 15.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (10, N'Clothing', N'Leather Jacket', 95.0000, 45.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (11, N'Clothing', N'Courdory Pants', 24.0000, 12.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (12, N'Clothing', N'Work Pants', 38.0000, 20.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (13, N'Clothing', N'Work Gloves', 8.0000, 4.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (14, N'Clothing', N'Comfor-fit Tee', 12.0000, 2.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (15, N'Clothing', N'Running Shorts', 20.0000, 5.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (16, N'Clothing', N'X-Train Shoes', 75.0000, 25.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (17, N'Clothing', N'Baseball Cap', 10.0000, 2.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (18, N'Electronics', N'DVD Player', 45.0000, 30.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (19, N'Electronics', N'HD-DVD Player', 150.0000, 100.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (20, N'Electronics', N'Blu-Ray DVD Player', 150.0000, 100.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (21, N'Electronics', N'40" LCD HD TV', 1000.0000, 800.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (22, N'Electronics', N'50" LCD HD TV', 1300.0000, 1100.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (23, N'Electronics', N'65" LCD HD TV', 1900.0000, 1700.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (24, N'Electronics', N'PC Webcam', 20.0000, 15.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (25, N'Electronics', N'Computer Mouse', 10.0000, 5.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (26, N'Electronics', N'Ergonomic Keyboard', 22.0000, 16.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (27, N'Electronics', N'20" LCD Monitor', 300.0000, 200.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (28, N'Electronics', N'17" LCD Monitor', 150.0000, 75.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (29, N'Hardware', N'18v Drill Driver Set', 90.0000, 45.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (30, N'Hardware', N'19.2v Drill Driver Set', 90.0000, 45.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (31, N'Hardware', N'10" Miter Saw', 200.0000, 140.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (32, N'Hardware', N'Lazer Level', 45.0000, 25.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (33, N'Hardware', N'Table Saw', 290.0000, 180.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (34, N'Hardware', N'Power Washer', 290.0000, 180.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (35, N'Hardware', N'Cold Chisel Set', 10.0000, 5.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (36, N'Hardware', N'Screwdriver Set', 10.0000, 5.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (37, N'Hardware', N'Drill Bit Set', 25.0000, 13.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (38, N'Hardware', N'Belt Sander', 250.0000, 180.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (39, N'Housewares', N'Crock Pot', 25.0000, 10.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (40, N'Housewares', N'Monsignor Coffee', 20.0000, 10.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (41, N'Housewares', N'Electric Griddle', 20.0000, 10.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (42, N'Sporting Goods', N'Tennis Racket', 50.0000, 20.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (43, N'Sporting Goods', N'Tennis Balls', 8.0000, 2.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (44, N'Sporting Goods', N'Basketball', 35.0000, 12.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (45, N'Sporting Goods', N'12 Pack Golf Balls', 20.0000, 8.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (46, N'Sporting Goods', N'Pro. Football', 65.0000, 20.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (47, N'Sporting Goods', N'Baseball Glove', 75.0000, 25.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (48, N'Sporting Goods', N'Heart Monitor', 20.0000, 15.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (49, N'Sporting Goods', N'Pedometer', 10.0000, 5.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (50, N'Sporting Goods', N'Sport Cycle', 255.0000, 100.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (51, N'Sporting Goods', N'Soccer Ball', 45.0000, 15.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (52, N'Housewares', N'Steam Iron', 15.0000, 5.0000)
+INSERT [dbo].[fudgemart_products] ([product_id], [product_department], [product_name], [product_retail_price], [product_wholesale_price]) VALUES (53, N'Housewares', N'Blender', 45.0000, 20.0000)
+GO
+
+
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (11, N'Hardware', N'Ball Peen Claw Hammer', 12.9500)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (12, N'Hardware', N'Sledge Hammer', 20.9500 )
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (13, N'Hardware', N'Rip Claw Hammer', 29.9500)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (14, N'Clothing', N'Dri-Fit Tee', 15.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (15, N'Clothing', N'Running Pants', 45.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (16, N'Clothing', N'Tube Socks', 6.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (17, N'Clothing', N'Squeaky Sneaks', 65.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (18, N'Clothing', N'Yoga Pants', 55.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (19, N'Clothing', N'Denim Jacket', 55.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (110, N'Clothing', N'Leather Jacket', 105.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (111, N'Clothing', N'Courdory Pants', 19.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (112, N'Clothing', N'Leather Pants', 88.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (113, N'Clothing', N'Work Gloves', 8.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (114, N'Clothing', N'Leather Gloves', 16.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (115, N'Clothing', N'Running Shorts', 21.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (116, N'Clothing', N'X-Train Shoes', 70.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (117, N'Clothing', N'Baseball Cap', 11.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (118, N'Electronics', N'DVD Player', 35.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (119, N'Electronics', N'HD-DVD Player', 110.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (210, N'Electronics', N'Blu-Ray DVD Player', 150.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (121, N'Electronics', N'40" LCD HD TV', 990.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (122, N'Electronics', N'50" LCD HD TV', 1200.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (123, N'Electronics', N'68" LCD HD TV', 1800.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (124, N'Electronics', N'68" LCD HD TV', 2000.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (125, N'Electronics', N'Computer Mouse', 10.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (126, N'Electronics', N'Ergonomic Keyboard', 20.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (127, N'Electronics', N'24" LCD Monitor', 300.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (128, N'Electronics', N'17" LCD Monitor', 75.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (129, N'Hardware', N'18v Drill Driver Set', 75.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (32, N'Hardware', N'19.2v Drill Driver Set', 90.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (33, N'Hardware', N'10" Miter Saw', 220.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (34, N'Hardware', N'Lazer Level', 40.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (35, N'Hardware', N'Table Saw', 290.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (36, N'Hardware', N'Power Washer', 250.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (37, N'Hardware', N'Cold Chisel Set', 12.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (38, N'Hardware', N'Screwdriver Set', 12.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (39, N'Hardware', N'Drill Driver Set', 25.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (30, N'Hardware', N'Orbital Sander', 150.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (31, N'Housewares', N'Crock Pot', 25.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (140, N'Housewares', N'Senior Coffee', 20.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (141, N'Housewares', N'Electric Griddle', 21.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (142, N'Sporting Goods', N'Tennis Racket', 45.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (143, N'Sporting Goods', N'Tennis Balls', 6.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (144, N'Sporting Goods', N'Basketball', 35.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (145, N'Sporting Goods', N'12 Pack Golf Balls', 18.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (416, N'Sporting Goods', N'Pro. Football', 85.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (417, N'Sporting Goods', N'Baseball Glove', 75.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (418, N'Sporting Goods', N'Heart Monitor', 20.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (419, N'Sporting Goods', N'Fitness Tracker', 20.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (510, N'Sporting Goods', N'Sport Cycle', 255.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (151, N'Sporting Goods', N'Volleyball', 35.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (152, N'Housewares', N'Steam Iron', 16.0000)
+INSERT [dbo].[mikeazon_products] ([product_id], [product_department], [product_name], [product_retail_price]) VALUES (513, N'Housewares', N'Blender', 44.0000)
+
+
+
