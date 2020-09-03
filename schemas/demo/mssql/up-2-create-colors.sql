@@ -8,26 +8,32 @@ GO
 create table rainbow_colors
 (
     color varchar(20) not null,
+    color_type varchar(20) not null,
     constraint pk_rainbow_colors_color primary key (color)
 )
 
 create table flag_colors 
 (
     color varchar(20) not null,
-    constraint pk_flag_colors_color primary key (color)
+    country varchar(20) not null,
+    constraint pk_flag_colors_color primary key (color, country)
 )
 
 GO
 
-insert into rainbow_colors (color) values
- ('red'),
- ('orange'),
- ('yellow'),
- ('green'),
- ('blue'),
- ('purple')
+insert into rainbow_colors (color, color_type) values
+ ('red', 'rainbow'),
+ ('orange', 'rainbow'),
+ ('yellow', 'rainbow'),
+ ('green', 'rainbow'),
+ ('blue', 'rainbow'),
+ ('purple', 'rainbow')
 
- insert into flag_colors (color) VALUES
- ('red'),
- ('white'),
- ('blue')
+ insert into flag_colors (color, country) VALUES
+ ('red', 'USA'),
+ ('white','USA' ),
+ ('blue', 'USA' ),
+ ('red', 'MEX'),
+ ('white','MEX' ),
+ ('green', 'MEX' )
+ 
