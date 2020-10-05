@@ -1,8 +1,11 @@
 use fudgebank
 go
 
-drop table if exists accounts
+if exists(select * from INFORMATION_SCHEMA.TABLE_CONSTRAINTS where CONSTRAINT_NAME = 'fk_accounts_account_type')
+	alter table accounts drop fk_accounts_account_type
 
+drop table if exists accounts
+drop table if exists account_types 
 
 GO 
 create table account_types (
@@ -19,13 +22,16 @@ CREATE TABLE accounts(
 	constraint u_accounts_business_key UNIQUE (account_num, account_type)
 )
 alter table accounts add CONSTRAINT
-	fk_accounts_account_type foreign key (account_type) references account_types (account)
+	fk_accounts_account_type foreign key (account_type) references account_types (account_type)
 
 GO
 
+insert into account_types VALUES
+	('Checking'),('Savings'), ('Money-Market')
+
 -- Starting balances
-insert into accounts values ('checking', 500)
-insert into accounts values ('savings', 1000)
+insert into accounts values (101, 'Checking', 500)
+insert into accounts values (101, 'Savings', 1000)
 
 select * from accounts
 
@@ -37,9 +43,9 @@ Turn ON system versioning in Employee table in two steps
 */ 
 ALTER TABLE accounts   
 ADD   
-    valid_from datetime2 (2) GENERATED ALWAYS AS ROW START HIDDEN    
+    valid_from datetime2 (2)  GENERATED ALWAYS AS ROW START     
         constraint df_valid_from DEFAULT DATEADD(second, -1, SYSUTCDATETIME())  
-    , valid_to datetime2 (2)  GENERATED ALWAYS AS ROW END HIDDEN     
+    , valid_to datetime2 (2)  GENERATED ALWAYS AS ROW END 
         constraint df_valid_to DEFAULT '9999.12.31 23:59:59.99'  
     , PERIOD FOR SYSTEM_TIME (valid_from, valid_to);   
 go
@@ -50,6 +56,8 @@ go
 
 select  * from accounts
 select * from accounts_history
+
+update 
 
 -- execute some transfers, pause a few seconds between each
 exec dbo.p_transfer_money 'checking','savings', 100

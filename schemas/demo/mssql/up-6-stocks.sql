@@ -1,10 +1,9 @@
 use demo
 GO
-/*
-if exists(select * FROM INFORMATION_SCHEMA.TABLES where TABLE_NAME='stocks')
+
+if exists(SELECT temporal_type FROM sys.tables WHERE  object_id = OBJECT_ID('dbo.stocks', 'u') and temporal_type=2)
     ALTER TABLE stocks
         SET (SYSTEM_VERSIONING = OFF); 
-*/
 drop table if exists stocks
 drop table if exists stocks_history
 GO
@@ -21,9 +20,9 @@ GO
 ALTER TABLE stocks
 ADD   
     valid_from datetime2 (2)  GENERATED ALWAYS AS ROW START     
-        constraint df_valid_from DEFAULT DATEADD(second, -1, SYSUTCDATETIME())  
+        constraint df_stocks_valid_from DEFAULT DATEADD(second, -1, SYSUTCDATETIME())  
     , valid_to datetime2 (2)  GENERATED ALWAYS AS ROW END 
-        constraint df_valid_to DEFAULT '9999.12.31 23:59:59.99'  
+        constraint df_stocks_valid_to DEFAULT '9999.12.31 23:59:59.99'  
     , PERIOD FOR SYSTEM_TIME (valid_from, valid_to);   
 go
 
@@ -106,3 +105,6 @@ alter table stocks SET (SYSTEM_VERSIONING=ON (HISTORY_TABLE=dbo.stocks_history))
 -- done.
 select * from stocks
 select * from stocks_history 
+
+--insert into stocks (ticker,price) values ('TEST', 123)
+--update stocks_history set valid_from = '2022-01-01' where ticker = 'AAPL'

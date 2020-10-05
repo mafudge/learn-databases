@@ -50,7 +50,7 @@ SELECT 6, 'tsam2', '1/1/2026', 'toucansam.com toucansam.org', 'premium', 19.95, 
 SELECT 7, 'twbird', '1/1/2025', 'tweety.com', 'BASIC', 9.95, 1, 1,'bilbo', '10.128.232.41', 'Windows', 'tweety@coldmail.com', 'Tweety Bird', 'MC 56609090466696200' UNION ALL
 SELECT 8, 'dduckl', '6/1/2026', 'daffyduck.com', 'premium', 19.95, 10, 100,'frodo', '10.128.232.42', 'Linux', 'dduck@coldmail.com', 'Daffy Duck', 'DISC 6092209046385500' UNION ALL
 SELECT 9, 'dduck2', '1/1/2027', 'bugsbunnysucks.com daffyduck.org', 'Basic', 9.95, 1, 1,'bilbo', '10.128.232.41', 'Windows', 'dduck@coldmail.com', 'Daffy duck', 'DISC 6092209046385500' UNION ALL
-SELECT 10, 'sbird', '1/1/2026', 'sonny.com cukoforcocoapuffs.com sonnygoescuko.com', 'premium', 19.95, 10, 100,'bilbo', '10.128.232.41', 'Windows', 'sonny@geemail.com', 'Sonny Bird', 'MC 56601230464566200' UNION ALL
+SELECT 10, 'sbird', '1/1/2026', 'sonny.com cukoforcocoapuffs.com sonnygoescuko.com', 'premium', 19.95, 10, 100,'bilbo', '10.128.232.41', 'Windows', 'sonny@geemail.com', 'Sonny Bird', 'MC 56601230464566200' 
 
 SET IDENTITY_INSERT [dbo].[cheep_web_hosting] OFF
 
