@@ -36,11 +36,12 @@ services:
     networks: 
       - "learndb_net"
   sqlpad:
-    image: sqlpad/sqlpad:4.4
+    image: sqlpad/sqlpad:5.6
     environment:
       - "SQLPAD_ADMIN=admin@admin.org"
       - "SQLPAD_ADMIN_PASSWORD=SU2orange!"
-      - "DISABLE_AUTH=True"
+      - "SQLPAD_AUTH_DISABLED=True"
+      - "SQLPAD_AUTH_DISABLED_DEFAULT_ROLE=admin"
     links:
       - mssql
     ports:
