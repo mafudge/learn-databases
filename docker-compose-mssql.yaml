@@ -2,20 +2,18 @@ version:  "3"
 
 services:
   mssql:
-    image: mcr.microsoft.com/azure-sql-edge:latest
-    cap_add: [ 'SYS_PTRACE' ]
+    image: mcr.microsoft.com/mssql/server:2017-latest
     environment:
-      - "ACCEPT_EULA=1"
-      - "MSSQL_SA_PASSWORD=SU2orange!"
+      - "ACCEPT_EULA=Y"
+      - "SA_PASSWORD=SU2orange!"
     ports:
       - "1433:1433"
     hostname: mssql
     volumes:
-      - "mssql-azuresql-edge-data:/var/opt/mssql"
+      - "mssql-2017-data:/var/opt/mssql"
     networks: 
       - "learndb_net"
   webapp:    
-    platform: linux/amd64
     build: app/.
     environment:
 #      - "CONNSTR=DRIVER={ODBC Driver 17 for SQL Server};SERVER=mssql,1433;DATABASE=master;UID=sa;PWD=SU2orange!"
@@ -38,7 +36,7 @@ services:
     networks: 
       - "learndb_net"
   sqlpad:
-    image: sqlpad/sqlpad:6.7.1 #5.6
+    image: sqlpad/sqlpad:5.6
     environment:
       - "SQLPAD_ADMIN=admin@admin.org"
       - "SQLPAD_ADMIN_PASSWORD=SU2orange!"
@@ -75,7 +73,7 @@ services:
 #      - "5080:8000"
 #      - "25482:25482"
 volumes:
-    mssql-azuresql-edge-data:
+    mssql-2017-data:
     sqlpad-volume:
 
 networks:

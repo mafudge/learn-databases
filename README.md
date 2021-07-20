@@ -28,7 +28,7 @@ Use this software to accompany the Applied Database Management textbook, the Int
 
 ## Software Requirements
 
-1. Docker is used to manage the containers. Installation instructions are here:   
+1. Docker is used to manage the containers. On Windows and Mac, download Docker Desktop 3.5 or higher. Installation instructions are here:   
 [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)  
   You must allocate at least 1CPU and 4GB of RAM to docker.  
   Mac: [https://docs.docker.com/docker-for-mac/#resources](https://docs.docker.com/docker-for-mac/#resources)  

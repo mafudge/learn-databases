@@ -1,4 +1,5 @@
-FROM adminer:4.7.7
+FROM adminer:4.8.1 
+#4.7.7
 
 USER root
 RUN apk add --no-cache --virtual .php-ext-deps \
