@@ -8,7 +8,7 @@ Use this software to accompany the Applied Database Management textbook, the Int
 
 ## What's included
 
-1. **Microsoft SQL Server 2017** database management system.
+1. **Microsoft Azure SQL Edge** database management system.
 2. **Database Provisioner** Application for creating sample databases and populating data.
 3. **SQL Pad** a web-based query tool.
 4. **Adminer** a web-based database admin tool.
@@ -120,5 +120,4 @@ To start an individual service, you can use the `start` option:
 
 Or to start all containers, you can use:  
 `docker-compose up -d`
-
 
