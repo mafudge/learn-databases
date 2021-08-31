@@ -53,6 +53,7 @@ services:
     networks: 
       - "learndb_net"
   adminer:
+    platform: linux/amd64
     build: adminer/.
     ports:
       - "5002:8080"
