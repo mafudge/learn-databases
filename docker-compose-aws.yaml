@@ -8,7 +8,7 @@ services:
       - "ACCEPT_EULA=1"
       - "MSSQL_SA_PASSWORD=${SAPW}"
     ports:
-      - "1433:1433"
+      - "6590:1433"
     hostname: mssql
     volumes:
       - "mssql-azuresql-edge-data:/var/opt/mssql"
@@ -23,13 +23,13 @@ services:
       - "FLASK_ENV=development"
       - "SCHEMA_PATH=/app/schemas"
       - "SQL_CLIENT_HOST=mssql"
-      - "SQL_CLIENT_PORT=1433"
+      - "SQL_CLIENT_PORT=6590"
       - "SQL_CLIENT_USER=sa"
-      - "SQL_CLIENT_PASS=SU2orange!"
+      - "SQL_CLIENT_PASS=${SAPW}"
       - "SQL_CLIENT_CMD=/opt/mssql-tools/bin/sqlcmd"
       - "RANDOM_SEED=0"
     ports: 
-      - "5000:5000"
+      - "6591:5000"
     links:
       - mssql
     volumes:
@@ -47,20 +47,20 @@ services:
     links:
       - mssql
     ports:
-      - "5001:3000"
+      - "6592:3000"
     volumes:
       - sqlpad-volume:/var/lib/sqlpad
     networks: 
       - "learndb_net"
-  adminer:
+#  adminer:
  #   platform: linux/amd64
-    build: adminer/.
-    ports:
-      - "5002:8080"
-    links:
-      - mssql
-    networks:
-      - "learndb_net"
+#    build: adminer/.
+#    ports:
+#      - "6593:8080"
+#    links:
+#      - mssql
+#    networks:
+#      - "learndb_net"
 
 #  superset:
 #    build: superset/.
