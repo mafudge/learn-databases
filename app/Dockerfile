@@ -18,9 +18,9 @@ COPY ./*.py /app/
 
 RUN chmod +x -R /app
 
-EXPOSE 5000
+EXPOSE 8000
 
 ENTRYPOINT [ "python" ]
-#ENTRYPOINT [ "/bin/ash" ]
 
-CMD [ "-m",  "flask", "run", "--host=0.0.0.0" , "--port=5000"]
+#CMD [ "-m",  "flask", "run", "--host=0.0.0.0" , "--port=5000"]
+CMD [ "app.py" ]
