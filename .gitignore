@@ -1,3 +1,6 @@
+# certs
+*.pem
+.counter 
 schemas/*/provisioned
 
 # Byte-compiled / optimized / DLL files

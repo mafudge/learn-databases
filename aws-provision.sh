@@ -1,12 +1,25 @@
 #!/bin/bash
+counterfile=.counter
 echo "Run this from your AWS Academy Learner Lab Terminal Window"
-name=learndatabases
+basename=learndatabases
+if [ ! -f "$counterfile" ]; then
+        # create counter
+        echo "0" > $counterfile
+fi
+counter=`cat $counterfile`
+counter=$((counter+1))
+name=$basename$counter
+echo "You are about to provision ${name} to AWS. Press ENTER to continue, CTRL+C to abort"
+read
+echo $counter > $counterfile
+echo "Starting the provisioning process for $name"
+
 echo "Creating Security Group"
 aws ec2 create-security-group --description ${name} --group-name ${name}
 aws ec2 authorize-security-group-ingress --group-name ${name}  --protocol tcp --port 22 --cidr "0.0.0.0/0"
 echo "Creating Key Pair"
 aws ec2 create-key-pair --key-name ${name} --query "KeyMaterial" --output text > ${name}.pem
-chmod 400 ${name}.pem
+chmod 600 ${name}.pem
 
 echo "Launching Instance"
 instanceid=`aws ec2 run-instances --image-id ami-0d4fb65189c3b8d49 --count 1 --instance-type t3.medium --key-name ${name} \
@@ -23,6 +36,7 @@ do
         sleep 5
         echo -n  .
         id=`aws ec2 describe-instance-status --filter Name=instance-status.reachability,Values=passed  --query InstanceStatuses[0].InstanceId`
+	id=`echo "$id" | tr -d '"'`
 done
 echo ""
 echo "Instance ID: ${instanceid} has started"
@@ -40,6 +54,7 @@ ssh  -i "${name}.pem" -o "StrictHostKeyChecking no"  ubuntu@${dns} ' \
     sudo ln -s  /usr/local/bin/docker-compose /usr/bin/docker-compose; \
     git clone https://github.com/mafudge/learn-databases.git'
 
+echo
 echo "Setup is complete. To access this instance, type: "
-echo ssh  -i "${name}.pem" -o "StrictHostKeyChecking no"  ubuntu@${dns}
+echo ssh  -i "${name}.pem" ubuntu@${dns}
 

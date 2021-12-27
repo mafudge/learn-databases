@@ -15,7 +15,7 @@ services:
     networks: 
       - "learndb_net"
   webapp:    
-    platform: linux/amd64
+#    platform: linux/amd64
     build: app/.
     environment:
 #      - "CONNSTR=DRIVER={ODBC Driver 17 for SQL Server};SERVER=mssql,1433;DATABASE=master;UID=sa;PWD=SU2orange!"
@@ -29,7 +29,7 @@ services:
       - "SQL_CLIENT_CMD=/opt/mssql-tools/bin/sqlcmd"
       - "RANDOM_SEED=0"
     ports: 
-      - "5000:5000"
+      - "5001:8000"
     links:
       - mssql
     volumes:
@@ -47,16 +47,16 @@ services:
     links:
       - mssql
     ports:
-      - "5001:3000"
+      - "5002:3000"
     volumes:
       - sqlpad-volume:/var/lib/sqlpad
     networks: 
       - "learndb_net"
   adminer:
-    platform: linux/amd64
+ #   platform: linux/amd64
     build: adminer/.
     ports:
-      - "5002:8080"
+      - "5003:8080"
     links:
       - mssql
     networks:
