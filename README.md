@@ -62,6 +62,8 @@ Here's a video of the walkthrough:
 
 ## Running the containers
 
+NOTE: If you are using a Mac with the M1 chip, you must use the `docker-compose-m1.yaml` file. e.g. `docker-compose -f docker-compose-m1.yaml ps` 
+
 1. Open a terminal window inside the `learn-databases` folder. This is where you cloned or unzipped the code repository.
 2. Type : `docker-compose up -d` to start everything. This might take some time as images are downloaded and/or built.
 3. Type : `docker-compose ps` to see the `mssql`,  `webapp`, `sqlpad`, `adminer` containers in a running **Up** state.
