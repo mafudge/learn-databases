@@ -1,8 +1,18 @@
 version:  "3"
 
 services:
+  # postgres:
+  #   image: postgres:14
+  #   environment:
+  #     - "POSTGRES_PASSWORD=SU2orange!"
+  #     - POSTGRES_USER=sa
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres-data:/var/lib/postgresql/data
   mssql:
     image: mcr.microsoft.com/azure-sql-edge:latest
+#    image: mcr.microsoft.com/mssql/server:2017-latest
     cap_add: [ 'SYS_PTRACE' ]
     environment:
       - "ACCEPT_EULA=1"
@@ -12,6 +22,7 @@ services:
     hostname: mssql
     volumes:
       - "mssql-azuresql-edge-data:/var/opt/mssql"
+#      - "mssql-2017-data:/var/opt/mssql"
     networks: 
       - "learndb_net"
   webapp:    
@@ -77,7 +88,9 @@ services:
 #      - "25482:25482"
 volumes:
     mssql-azuresql-edge-data:
+#    mssql-2017-data:
     sqlpad-volume:
+    # postgres-data:
 
 networks:
   learndb_net:

@@ -1,5 +1,11 @@
 -- vBay!
 -- A Carlos V. Inspired E-Bay Clone
+use master
+go
+
+
+create database vBay
+go
 
 use vbay
 GO
