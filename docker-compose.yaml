@@ -11,8 +11,8 @@ services:
   #   volumes:
   #     - postgres-data:/var/lib/postgresql/data
   mssql:
-    image: mcr.microsoft.com/azure-sql-edge:latest
-#    image: mcr.microsoft.com/mssql/server:2017-latest
+#    image: mcr.microsoft.com/azure-sql-edge:latest
+    image: mcr.microsoft.com/mssql/server:2019-latest
     cap_add: [ 'SYS_PTRACE' ]
     environment:
       - "ACCEPT_EULA=1"
@@ -21,8 +21,8 @@ services:
       - "1433:1433"
     hostname: mssql
     volumes:
-      - "mssql-azuresql-edge-data:/var/opt/mssql"
-#      - "mssql-2017-data:/var/opt/mssql"
+#      - "mssql-azuresql-edge-data:/var/opt/mssql"
+      - "mssql-2019-data:/var/opt/mssql"
     networks: 
       - "learndb_net"
   webapp:    
@@ -87,8 +87,8 @@ services:
 #      - "5080:8000"
 #      - "25482:25482"
 volumes:
-    mssql-azuresql-edge-data:
-#    mssql-2017-data:
+#    mssql-azuresql-edge-data:
+    mssql-2019-data:
     sqlpad-volume:
     # postgres-data:
 
