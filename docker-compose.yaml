@@ -13,9 +13,10 @@ services:
     networks: 
       - "learndb_net"
   provisioner:    
-    build: provisioner/.
+    image: mafudge/learn-databases-provisioner:latest
+    # dev/debug
+    # build: provisioner/.
     environment:
-#      - "CONNSTR=DRIVER={ODBC Driver 17 for SQL Server};SERVER=mssql,1433;DATABASE=master;UID=sa;PWD=SU2orange!"
       - "FLASK_APP=app.py"
       - "FLASK_ENV=development"
       - "SCHEMA_PATH=/app/schemas"
@@ -30,7 +31,8 @@ services:
     links:
       - mssql
     volumes:
-      - "./provisioner/:/app/" # for now
+      # dev/debug
+      #- "./provisioner/:/app/"
       - "./schemas:/app/schemas"
     networks: 
       - "learndb_net"
