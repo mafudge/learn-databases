@@ -1,0 +1,84 @@
+version:  "3"
+
+services:
+  mssql:
+    image: mcr.microsoft.com/azure-sql-edge:latest
+    cap_add: [ 'SYS_PTRACE' ]
+    environment:
+      - "ACCEPT_EULA=1"
+      - "MSSQL_SA_PASSWORD=${SAPW}"
+    ports:
+      - "6590:1433"
+    hostname: mssql
+    volumes:
+      - "mssql-azuresql-edge-data:/var/opt/mssql"
+    networks: 
+      - "learndb_net"
+  webapp:    
+#    platform: linux/amd64
+    build: app/.
+    environment:
+#      - "CONNSTR=DRIVER={ODBC Driver 17 for SQL Server};SERVER=mssql,1433;DATABASE=master;UID=sa;PWD=SU2orange!"
+      - "FLASK_APP=app.py"
+      - "FLASK_ENV=development"
+      - "SCHEMA_PATH=/app/schemas"
+      - "SQL_CLIENT_HOST=mssql"
+      - "SQL_CLIENT_PORT=6590"
+      - "SQL_CLIENT_USER=sa"
+      - "SQL_CLIENT_PASS=${SAPW}"
+      - "SQL_CLIENT_CMD=/opt/mssql-tools/bin/sqlcmd"
+      - "RANDOM_SEED=0"
+    ports: 
+      - "6591:5000"
+    links:
+      - mssql
+    volumes:
+      - "./app/:/app/" # for now
+      - "./schemas:/app/schemas"
+    networks: 
+      - "learndb_net"
+  sqlpad:
+    image: sqlpad/sqlpad:6.7.1 #5.6
+    environment:
+      - "SQLPAD_ADMIN=admin@admin.org"
+      - "SQLPAD_ADMIN_PASSWORD=SU2orange!"
+      - "SQLPAD_AUTH_DISABLED=True"
+      - "SQLPAD_AUTH_DISABLED_DEFAULT_ROLE=admin"
+    links:
+      - mssql
+    ports:
+      - "6592:3000"
+    volumes:
+      - sqlpad-volume:/var/lib/sqlpad
+    networks: 
+      - "learndb_net"
+#  adminer:
+ #   platform: linux/amd64
+#    build: adminer/.
+#    ports:
+#      - "6593:8080"
+#    links:
+#      - mssql
+#    networks:
+#      - "learndb_net"
+
+#  superset:
+#    build: superset/.
+#    links:
+#      - mssql
+#    ports:
+#      - "5088:8088"
+#  omnidb:
+#    image: t4skforce/omnidb:latest
+#    links:
+#      - mssql
+#    ports:
+#      - "5080:8000"
+#      - "25482:25482"
+volumes:
+    mssql-azuresql-edge-data:
+    sqlpad-volume:
+
+networks:
+  learndb_net:
+    driver: bridge

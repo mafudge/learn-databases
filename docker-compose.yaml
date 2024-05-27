@@ -1,17 +1,5 @@
-version:  "3"
-
 services:
-  # postgres:
-  #   image: postgres:14
-  #   environment:
-  #     - "POSTGRES_PASSWORD=SU2orange!"
-  #     - POSTGRES_USER=sa
-  #   ports:
-  #     - "5432:5432"
-  #   volumes:
-  #     - postgres-data:/var/lib/postgresql/data
   mssql:
-#    image: mcr.microsoft.com/azure-sql-edge:latest
     image: mcr.microsoft.com/mssql/server:2019-latest
     cap_add: [ 'SYS_PTRACE' ]
     environment:
@@ -21,13 +9,11 @@ services:
       - "1433:1433"
     hostname: mssql
     volumes:
-#      - "mssql-azuresql-edge-data:/var/opt/mssql"
       - "mssql-2019-data:/var/opt/mssql"
     networks: 
       - "learndb_net"
-  webapp:    
-#    platform: linux/amd64
-    build: app/.
+  provisioner:    
+    build: provisioner/.
     environment:
 #      - "CONNSTR=DRIVER={ODBC Driver 17 for SQL Server};SERVER=mssql,1433;DATABASE=master;UID=sa;PWD=SU2orange!"
       - "FLASK_APP=app.py"
@@ -37,19 +23,19 @@ services:
       - "SQL_CLIENT_PORT=1433"
       - "SQL_CLIENT_USER=sa"
       - "SQL_CLIENT_PASS=SU2orange!"
-      - "SQL_CLIENT_CMD=/opt/mssql-tools/bin/sqlcmd"
+      - "SQL_CLIENT_CMD=/opt/mssql-tools18/bin/sqlcmd"
       - "RANDOM_SEED=0"
     ports: 
       - "5001:8000"
     links:
       - mssql
     volumes:
-      - "./app/:/app/" # for now
+      - "./provisioner/:/app/" # for now
       - "./schemas:/app/schemas"
     networks: 
       - "learndb_net"
   sqlpad:
-    image: sqlpad/sqlpad:6.7.1 #5.6
+    image: sqlpad/sqlpad:7.4.3
     environment:
       - "SQLPAD_ADMIN=admin@admin.org"
       - "SQLPAD_ADMIN_PASSWORD=SU2orange!"
@@ -64,8 +50,7 @@ services:
     networks: 
       - "learndb_net"
   adminer:
- #   platform: linux/amd64
-    build: adminer/.
+    image: adminer:4.8.1-standalone
     ports:
       - "5003:8080"
     links:
@@ -73,24 +58,9 @@ services:
     networks:
       - "learndb_net"
 
-#  superset:
-#    build: superset/.
-#    links:
-#      - mssql
-#    ports:
-#      - "5088:8088"
-#  omnidb:
-#    image: t4skforce/omnidb:latest
-#    links:
-#      - mssql
-#    ports:
-#      - "5080:8000"
-#      - "25482:25482"
 volumes:
-#    mssql-azuresql-edge-data:
     mssql-2019-data:
     sqlpad-volume:
-    # postgres-data:
 
 networks:
   learndb_net:

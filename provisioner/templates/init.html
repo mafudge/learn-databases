@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}
+Init Output 
+{% endblock %}
+{% block content %}
+<div>
+<code>
+    {% for row in rows %}
+        {{ row }}<br>
+    {% endfor %}
+</code>
+</div>
+<div class="min-w-full">
+    <a href="/" class="btn btn-secondary">Return</a>
+</div>
+{% endblock %}

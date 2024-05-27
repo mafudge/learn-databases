@@ -1,0 +1,52 @@
+# Learn Databases !
+
+Everything you need to get started learning databases using Micorsoft SQL Server.
+
+## Hardware Requirements
+
+1. A computer with one of these Operating Systems:   
+ - Mac OSX  
+ - Windows 10 64bit (not Home edition)  
+ - Linux or  
+ - Chrome OS w/Linux Enabled [https://support.google.com/chromebook/answer/9145439?hl=en](https://support.google.com/chromebook/answer/9145439?hl=en) 
+2. At least 8GB RAM.
+3. At least 8 GB free disk space. 
+
+## Software Requirements
+
+1. Docker [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)  
+  You must allocate at least 1CPU and 4GB of RAM to docker.  
+  Mac: [https://docs.docker.com/docker-for-mac/#resources](https://docs.docker.com/docker-for-mac/#resources)  
+  Windows: [https://docs.docker.com/docker-for-mac/#resources](https://docs.docker.com/docker-for-mac/#resources)  
+  Linux/ChromeOS: No Configuration Necessary
+2. Azure Data Studio [https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio).   
+This is the client tool used to connect to the databases.
+
+## Using Learn Databases
+
+### Starting up MSSQL Server
+
+1. Open a terminal window inside the `learn-dataases` folder.
+2. Type : `docker-compose up -d` to start everything.
+3. Type : `docker-compose ps` to see the `mssql` Database,  `webapp`, and `sqlpad` running.
+
+### Creating the Sample Databases
+
+There is a built-in web application for creating the sample databases. For some databases you can use the application to update the data.
+
+1. Open a web browser and connect to `http://localhost:5000` to launch the Database Provisioner application. You can view connection information and also to setup the sample databases.
+2. Click `Create` to create the databases. You need. You can click on `Info` to get details about the database.
+
+### Connecting to MSSQL Server
+
+1. Open `Azure Data Studio`
+2. Under `Servers` select `Add New Connection`
+3. Fill in the connection information based on the information displayed in the Database Provisioner application.
+4. Here's a quick tutorial you can follow to learn Azure Data Studio. [https://docs.microsoft.com/en-us/sql/azure-data-studio/quickstart-sql-server](https://docs.microsoft.com/en-us/sql/azure-data-studio/quickstart-sql-server)
+
+#### Browser-based connection to MSSQL Server
+
+1. Open a web browser and connect to `http://localhost:5001` to launch the SQL Pad application.
+
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://morgan3d.github.io/markdeep/latest/markdeep.min.js" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

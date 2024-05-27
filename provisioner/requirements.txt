@@ -1,0 +1,6 @@
+flask
+markdown
+waitress
+pymssql
+pyodbc
+#mssql-cli

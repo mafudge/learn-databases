@@ -1,4 +1,0 @@
-pyodbc
-flask
-markdown
-waitress
