@@ -1,0 +1,17 @@
+
+
+2024summer
+
+[x] Upgrade SQLPad to 7.4.3
+[x] Upgrade Adminer to 4.7.9 - now native image 
+[x] Fix issues with Provisioner / osX compatability
+[x] reconfigure docker-compose to use Provisioner image instead of build
+[x] cleanup provisioner CSS 
+[x] cleanup repository / archive obsolete configurations 
+[x] update readme and instructions
+
+Mac tests
+[x] Adminer
+[x] Mssql 
+[x] Db Provisioner
+[x] Database
