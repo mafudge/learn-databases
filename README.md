@@ -4,7 +4,7 @@
 
 This repository contains docker configurations and base scripts necessary to provide a complete database management system with sample data and web-based tooling.
 
-Use this software to accompany the Applied Database Management textbook, the Introduction to Database Management Systems course, or to just explore databases on your own! 
+Use this software to accompany the [Applied Database Management](https://mafudge.github.io/applied-database-management/) textbook, the [Introduction to Database Management Systems](https://github.com/mafudge/ist659) course, or to just explore databases on your own! 
 
 ## What's included?
 
@@ -136,3 +136,12 @@ To start an individual service, you can use the `start` option:
 Or to start all containers, you can use:  
 `docker-compose up -d`
 
+## All the resources for IST659 / Applied Database Management
+
+Learn Databases is part of the [Applied Database Management](https://mafudge.github.io/applied-database-management/) family of resoruces for teaching Databases and SQL. This is used in IST659, a graduate level introduction to relational databases and SQL.
+
+- Content: [https://github.com/mafudge/ist659](https://github.com/mafudge/ist659)
+- Lab Environment: [https://github.com/mafudge/learn-databases](https://github.com/mafudge/learn-databases)
+- Textbook: [https://www.greatriverlearning.com/product-details/1947](https://www.greatriverlearning.com/product-details/1947)
+- Videos From Textbook: [https://www.youtube.com/watch?v=96uKeHSQMkg&list=PLyRiRUsTyUXghCQTvsCeMjOCVjIIPsopR](https://www.youtube.com/watch?v=96uKeHSQMkg&list=PLyRiRUsTyUXghCQTvsCeMjOCVjIIPsopR)
+- Lecture Videos: [https://www.youtube.com/watch?v=WCNLH9CFN6o&list=PLyRiRUsTyUXjzOociFB7jak16OrpntUZk](https://www.youtube.com/watch?v=WCNLH9CFN6o&list=PLyRiRUsTyUXjzOociFB7jak16OrpntUZk)
