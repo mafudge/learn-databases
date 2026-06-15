@@ -1,4 +1,7 @@
+2026summer
 
+[x] fixed bug in provisioner app with paths
+[x] added light/dark mode toggle to provisioner UI
 
 2024summer
 
