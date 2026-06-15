@@ -15,7 +15,7 @@ import random
 
 logging.basicConfig(format='%(levelname)s: %(asctime)s => %(message)s', level=logging.INFO, stream=sys.stdout)
 
-schema_path = os.environ['SCHEMA_PATH'] if  'SCHEMAPATH' in os.environ.keys() else os.path.join(".","schemas")
+schema_path = os.environ['SCHEMA_PATH'] if  'SCHEMA_PATH' in os.environ.keys() else os.path.join(".","schemas")
 sql_client_host = os.environ['SQL_CLIENT_HOST'] if  'SQL_CLIENT_HOST' in os.environ.keys() else "mssql"
 sql_client_port = os.environ['SQL_CLIENT_PORT'] if  'SQL_CLIENT_PORT' in os.environ.keys() else "1433"
 sql_client_user = os.environ['SQL_CLIENT_USER'] if  'SQL_CLIENT_USER' in os.environ.keys() else "sa"
